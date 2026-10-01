@@ -1,0 +1,27 @@
+[package]
+name = "testsuite-runner"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "testsuite_runner"
+
+[[bin]]
+name = "testsuite-runner"
+path = "src/main.rs"
+
+[[test]]
+name = "pipeline_properties"
+path = "src/tests/pipeline_properties.rs"
+
+[dependencies]
+clap.workspace = true
+csv.workspace = true
+robotool-harness.workspace = true
+serde.workspace = true
+testsuite-generator.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+serde_json.workspace = true
+testsuite-generator = { workspace = true, features = ["testing"] }

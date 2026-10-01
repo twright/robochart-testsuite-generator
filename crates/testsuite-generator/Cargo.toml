@@ -1,0 +1,25 @@
+[package]
+name = "testsuite-generator"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "testsuite_generator"
+
+[[bin]]
+name = "testsuite-generator"
+path = "src/main.rs"
+
+[features]
+# Random well-formed case rows (`test_rows`) for other crates' tests.
+testing = ["dep:proptest"]
+
+[dependencies]
+clap.workspace = true
+csv.workspace = true
+proptest = { workspace = true, optional = true }
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true

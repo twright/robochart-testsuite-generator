@@ -1,0 +1,25 @@
+// RoboTool bug B3 (to confirm): an initialised constant's parameter is ignored.
+// The CSP process takes `a` as a parameter, D__(id__, const_b3_mod0_ctrl0_stm0_a),
+// but uses the initialiser 1, so D__(0, 2) outputs 1.
+// Expected: either the argument is used (output 2), or `a` is not a
+// parameter. See docs/robotool-bugs.md, section B3.
+package b3
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      const a : int = 1
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! a
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

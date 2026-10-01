@@ -1,0 +1,6 @@
+include "b4.csp"
+-- a = 2, so a * a * a = 8. RoboTool computes core_int = { -2..2}, so the
+-- event output.out.8 does not exist; the model outputs 2 instead.
+saturated = b4::mod0::output.out!2 -> (SKIP |~| STOP)
+model = b4::mod0::D__(0, 2)
+assert saturated [FD= model

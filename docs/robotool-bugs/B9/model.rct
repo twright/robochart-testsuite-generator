@@ -1,0 +1,20 @@
+// RoboTool bug B9: a validated string literal reaches an unimplemented expression compiler case.
+package b9
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : string }
+  controller ctrl0 {
+    event output : string
+    stm stm0 {
+      event output : string
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! ("hello")
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

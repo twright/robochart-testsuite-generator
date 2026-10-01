@@ -1,0 +1,5 @@
+include "real_probe.csp"
+-- Diagnostic assertion of the observed oracle encoding, not Python semantics.
+observed_integer = real_probe::mod0::output.out!1 -> (SKIP |~| STOP)
+model = real_probe::mod0::D__(0, 3, 2)
+assert observed_integer [FD= model

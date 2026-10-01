@@ -1,0 +1,25 @@
+// RoboTool bug B2: a lambda's domain predicate is dropped.
+// `lambda x: int | x > 0 @ x + 1` is translated as the total function
+// `funcToSet((\x @ Plus(x, 1, core_int)), core_int)`, without `x > 0`, so
+// `0 in dom(...)` below is true.
+// Expected: the model outputs false. See docs/robotool-bugs.md, section B2.
+package b2
+import relation_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : boolean }
+  controller ctrl0 {
+    event output : boolean
+    stm stm0 {
+      event output : boolean
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (0 in dom(lambda x: int | x > 0 @ x + 1))
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

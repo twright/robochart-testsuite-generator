@@ -1,0 +1,20 @@
+// RoboTool bug B10: result in an action validates but reaches an unimplemented expression compiler case.
+package b10
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (result)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

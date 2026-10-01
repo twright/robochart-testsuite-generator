@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 1d0d5635969bde92ebf7898254a7a68db3bc9655742c59ffddb9a9078f2f0467 # shrinks to statements = [Spec { schema: Schema { records: [("Spin", [("beta", Seq(Nat))]), ("Pose", [("omega", Seq(Int)), ("mid", Seq(Bool))])] }, vars: [("cmd", Seq(Int), Array [Number(-1)]), ("i", Int, Number(0))], constants: {"cmd"}, observe: ["cmd"], state: {"cmd": Array []}, outputs: [], trace: [], inputs: [], driver: [], iteration: Some(3), body: "work({{index}})", expected_status: "pass" }], expressions = [ExpressionRow { inputs: {"a": Object {"items": Array [Number(1), Number(2), Number(0)], "type": String("set")}, "domain": Array [Number(-3), Number(3)]}, output: Object {"items": Array [Number(1), Number(2), Number(0)], "type": String("set")}, robochart: "a" }]

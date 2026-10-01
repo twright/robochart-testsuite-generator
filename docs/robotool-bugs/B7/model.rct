@@ -1,0 +1,22 @@
+// RoboTool bug B7: selective import generates a reference to an absent precondition.
+// Change only the import to sequence_toolkit::* as the working control.
+package b7
+import sequence_toolkit::size
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : nat }
+  controller ctrl0 {
+    event output : nat
+    stm stm0 {
+      event output : nat
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! size(<0>)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

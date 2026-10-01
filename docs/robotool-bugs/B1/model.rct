@@ -1,0 +1,25 @@
+// RoboTool bug B1: applying a function-typed constant produces invalid CSP.
+// `f(1)` below is translated as `callFunc((f), (1))`, using the bare name `f`
+// instead of the constant's CSP name `const_b1_mod0_ctrl0_stm0_f`, so FDR
+// rejects the generated CSP with `f is not in scope`.
+// Expected: the model outputs f(1) = 2. See docs/robotool-bugs.md, section B1.
+package b1
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      const f : int -> int = lambda x: int @ x + 1
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! f(1)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

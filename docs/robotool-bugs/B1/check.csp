@@ -1,0 +1,5 @@
+include "b1.csp"
+-- f = lambda x: int @ x + 1, so f(1) = 2.
+expected = b1::mod0::output.out!2 -> (SKIP |~| STOP)
+model = b1::mod0::D__(0, {(x, x + 1) | x <- { -2..2}})
+assert expected [FD= model

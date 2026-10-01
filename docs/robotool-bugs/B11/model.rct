@@ -1,0 +1,20 @@
+// RoboTool bug B11: from validates but its CSP translation is an unbound name (to behaves the same).
+package b11
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (from)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

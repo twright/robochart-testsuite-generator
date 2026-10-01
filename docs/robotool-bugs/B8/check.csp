@@ -1,0 +1,5 @@
+include "b8.csp"
+-- Reflexive refinement tests whether the generated CSP can be loaded.
+-- No translator output or new corpus observation is introduced.
+model = b8::mod0::D__(0)
+assert model [FD= model

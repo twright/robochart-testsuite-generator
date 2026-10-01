@@ -1,0 +1,25 @@
+// RoboTool bug B5: a sequence literal starting with a negative number does
+// not parse. The lexer reads `<-` as one token, so `<-1` below fails with
+// "mismatched character '1' expecting '>'". `< -1>`, with a space, parses.
+// Expected: `<-1>` parses as a one-element sequence. See docs/robotool-bugs.md, section B5.
+package b5
+import sequence_toolkit::*
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      const s : Seq(int) = <-1>
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! size(s)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

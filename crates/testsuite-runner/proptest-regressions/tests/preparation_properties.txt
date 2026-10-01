@@ -1,0 +1,8 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 06afb3bafd525c2c2c07fbd21fc279b4da0126fbb2a00d68ef641667539ecb2e # shrinks to spec = Spec { schema: Schema { records: [("Pose", [("zeta", Seq(Nat))]), ("Cmd", [("zeta", Seq(Rec("Pose"))), ("beta", Seq(Bool))])] }, vars: [("cmd", Int, Number(0)), ("flag", Int, Number(0)), ("count", Seq(Nat), Array []), ("level", Bool, Bool(false)), ("i", Int, Number(2))], constants: {}, observe: ["i", "level"], state: {"i": Number(-2), "level": Bool(true)}, outputs: [], trace: [], inputs: [("scan", None), ("go", Some(Bool))], driver: [("scan", None)], iteration: Some(2) }, pick = Index(8974107392293930895)
+cc d576b4cdb6482731d2e62dda6772769a0be6655f18dc35a9d88ec2a095616669 # shrinks to spec = Spec { schema: Schema { records: [("Spin", [("beta", Seq(Int))]), ("Pose", [("zeta", Nat)])] }, vars: [("total", Rec("Spin"), Object {"beta": Array []}), ("i", Int, Number(0))], constants: {}, observe: ["total"], state: {"total": Object {"beta": Array []}}, outputs: [("sent", None)], trace: [], inputs: [("scan", None)], driver: [("scan", None)], iteration: Some(0), body: "work({{index}})", expected_status: "pass" }, kind = 13, pick = Index(10215697589669920589)

@@ -1,0 +1,22 @@
+// Oracle limitation B6: bounded quantifiers validate but the CSP expression
+// compiler does not implement Forall. This is not a Python translator result.
+package b6
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : boolean }
+  controller ctrl0 {
+    event output : boolean
+    stm stm0 {
+      const domain : Set(int) = {1}
+      event output : boolean
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (forall x: int | x in domain @ x == 1)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

@@ -1,0 +1,24 @@
+// Oracle real-number limitation R1: real channels have integer CSP domains
+// and Div uses CSP integer division. This probe observes 3 / 2 as integer 1.
+// This is a diagnostic model, not a translator-produced corpus expectation.
+package real_probe
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : real }
+  controller ctrl0 {
+    event output : real
+    stm stm0 {
+      const a : int = 3
+      const b : int = 2
+      event output : real
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (a / b)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

@@ -1,0 +1,5 @@
+include "b2.csp"
+-- 0 is not in the domain of lambda x: int | x > 0 @ x + 1.
+expected = b2::mod0::output.out!false -> (SKIP |~| STOP)
+model = b2::mod0::D__(0)
+assert expected [FD= model

@@ -1,0 +1,5 @@
+include "b12.csp"
+-- Reflexive refinement tests whether the generated CSP can be loaded.
+-- No translator output or new corpus observation is introduced.
+model = b12::mod0::D__(0, "a")
+assert model [FD= model

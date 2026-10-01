@@ -1,0 +1,23 @@
+// RoboTool bug B12: a type test of a string constant validates but its CSP is ill-typed.
+// The constant is uninitialised so that the string literal compiler gap (B9) is not reached;
+// replacing `is` with `as` (and the event type with int) fails in the same way.
+package b12
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : boolean }
+  controller ctrl0 {
+    event output : boolean
+    stm stm0 {
+      const a : string
+      event output : boolean
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (a is int)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

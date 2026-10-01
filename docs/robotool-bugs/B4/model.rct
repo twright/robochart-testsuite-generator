@@ -1,0 +1,28 @@
+// RoboTool bug B4: the integer bound computation uses saturating arithmetic.
+// Saturation itself is intended: Mult(e1,e2,T) returns e1 when e1*e2 is not in
+// T. The bug is in sizing core_int: RoboTool adds the values of each expression
+// to the default range { -2..2}, but computes them with the same saturating
+// Mult over { -2..2}, so a * a * a below never contributes 8. core_int stays
+// { -2..2} and the model outputs 2.
+// Expected: core_int contains 8 and the model outputs 8.
+// See docs/robotool-bugs.md, section B4.
+package b4
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      const a : int = 2
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (a * a * a)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

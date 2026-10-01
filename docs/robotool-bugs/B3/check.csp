@@ -1,0 +1,8 @@
+include "b3.csp"
+-- The model outputs the constant a, initialised to 1 in the model.
+-- D__ takes a as a parameter; here the parameter is 2.
+uses_argument = b3::mod0::output.out!2 -> (SKIP |~| STOP)
+uses_initialiser = b3::mod0::output.out!1 -> (SKIP |~| STOP)
+model = b3::mod0::D__(0, 2)
+assert uses_argument [FD= model
+assert uses_initialiser [FD= model

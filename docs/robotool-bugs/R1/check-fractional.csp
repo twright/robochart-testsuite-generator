@@ -1,0 +1,4 @@
+include "real_probe.csp"
+expected = real_probe::mod0::output.out!1.5 -> (SKIP |~| STOP)
+model = real_probe::mod0::D__(0, 3, 2)
+assert expected [FD= model

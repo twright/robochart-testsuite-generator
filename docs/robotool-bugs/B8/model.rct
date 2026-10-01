@@ -1,0 +1,21 @@
+// RoboTool bug B8: a definite description is translated as a function graph.
+// The unique x with x == 1 is 1, an int, but the CSP sends funcToSet(...).
+package b8
+module mod0 {
+  connection ctrl0 on output to rp0 on output ( _async )
+  robotic platform rp0 { event output : int }
+  controller ctrl0 {
+    event output : int
+    stm stm0 {
+      event output : int
+      initial i0
+      final f0
+      transition t0 {
+        from i0
+        to f0
+        action output ! (the x: int | x == 1 @ x)
+      }
+    }
+    connection stm0 on output to ctrl0 on output
+  }
+}

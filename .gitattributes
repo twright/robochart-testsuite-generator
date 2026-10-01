@@ -1,0 +1,2 @@
+# CSV fixtures include deliberate whitespace inside quoted expressions.
+*.csv whitespace=-trailing-space
